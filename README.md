@@ -19,6 +19,30 @@ Have a look at this [fork](https://github.com/taitruong/typescript-test). In the
 > This branch is XYZ commits behind software-developer-org:master. | Pull request | Compare
 
 Now you can go to '[Compare](https://github.com/software-developer-org/typescript-template/compare/master...taitruong:master)' and click on '[switching the base for your comparison](https://github.com/taitruong/typescript-test/compare/master...software-developer-org:master)' and you can create a pull request for getting all the changes into your fork.
+## Duplicating a repository
+
+- go to your GitHub account, create a new repository e.g. myprojects-typescript-template
+- open Git Bash
+- create a bare clone of the repository
+```
+$ git clone --bare https://github.com/software-developer-org/typescript-template
+```
+- navigate to the that repository (a bare clone repo will end with _.git_!)
+```
+$ cd typescript-template.git
+```
+- mirror-push to your new repository on GitHub
+```
+$ git push --mirror https://github.com/_yourusername_/myprojects-typescript-template.git
+```
+- remove the temporary local repository
+```
+$ cd ..
+$ git -rf typescript-template.git
+```
+## Why duplicating?
+
+With _git clone --bare_ you will get all of the tags copied, local branches `master (HEAD)`, `next`, `pu`, and `maint`, no remote tracking branches. That is, all branches are copied as is, and it's set up completely independent, with no expectation of fetching again. Any remote branches (in the cloned remote) and other refs are completely ignored. Your new GitHub repository will now not be affected by changes in the initial repo, like forking, anymore.
 
 # Setup tool chain
 
